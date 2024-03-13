@@ -1,0 +1,28 @@
+[
+    {
+        "username" : "Maxene Tolentino",
+        "email" : "max_tolentino@gmail.com",
+        "password" : "Maxene",
+        "avatar_url" : "./images/profile-pic.jpg"
+    },{
+        "username" : "Neo Rey",
+        "email" : "neo_rey@gmail.com",
+        "password" : "Neo",
+        "avatar_url" : "./images/profile-pic.jpg"
+    },{
+        "username" : "Louise Amores",
+        "email" : "louise_amores@gmail.com",
+        "password" : "Louise",
+        "avatar_url" : "./images/profile-pic.jpg"
+    },{
+        "username" : "Wilbert Villagarcia",
+        "email" : "wilbert_villagarcia@gmail.com",
+        "password" : "Wilbert",
+        "avatar_url" : "./images/profile-pic.jpg"
+    },{
+        "username" : "Juan Dela Cruz",
+        "email" : "juan_delacruz@gmail.com",
+        "password" : "Juan",
+        "avatar_url" : "./images/profile-pic.jpg"
+    }
+]
