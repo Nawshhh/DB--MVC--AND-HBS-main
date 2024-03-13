@@ -320,6 +320,7 @@ module.exports = function (app) {
   });
 };
 
+
 function truncateString(inputString) {
   const maxLength = 152;
   if (inputString.length <= maxLength) {
