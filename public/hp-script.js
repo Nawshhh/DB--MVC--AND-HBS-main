@@ -1,40 +1,3 @@
-// class User {
-//     constructor(name, feedback, rating){
-//       this.name = name;
-//       this.feedback = feedback;
-//       this.rating = rating;
-//     }
-//   }
-  
-//   const user1 = new User("Michael Angelo", "I would like to eat here forever!", 4);
-//   const user2 = new User("Sarah Johnson", "Fantastic food and service!", 5);
-//   const user3 = new User("John Smith", "Great atmosphere and delicious dishes.", 4);
-//   const user4 = new User("Emily Davis", "The best restaurant in town!", 5);
-//   const user5 = new User("Alex Martinez", "Amazing experience from start to finish.", 5);
-//   const user6 = new User("Jessica Miller", "Impressive menu and attentive staff.", 4);
-//   const user7 = new User("David Lee", "A hidden gem! Must try their specials.", 4);
-//   const user8 = new User("Olivia Taylor", "Lovely ambiance and top-notch cuisine.", 5);
-//   const user9 = new User("Daniel White", "Exceptional service and mouth-watering dishes.", 5);
-//   const user10 = new User("Sophia Brown", "I'll definitely be coming back!", 4);
-//   const user11 = new User("William Turner", "Delicious food and friendly staff.", 4);
-//   const user12 = new User("Ava Garcia", "Cozy setting with a diverse menu.", 4);
-//   const user13 = new User("James Wilson", "Perfect for special occasions. Highly recommend.", 5);
-//   const user14 = new User("Emma Harris", "Great value for the quality of food.", 5);
-//   const user15 = new User("Liam Davis", "Outstanding experience every time!", 5);
-  
-//   let feedback1 = [user1,user2,user3];
-//   let feedback2 = [user4,user5,user6];
-//   let feedback3 = [user7,user8,user9];
-//   let feedback4 = [user10,user11,user12];
-//   let feedback5 = [user13,user14,user15];
-  
-//   let users = [feedback1,feedback2,feedback3,feedback4,feedback5];
-  
-  let currentIndex = 0;
-  
-  let images = ["/images/chimmy.jpeg", "/images/24-profile.jpg", "/images/dimsum-treats.jpeg", "/images/tea-cup.jpg" , "/images/j&j.jpg"]; 
-  let resto_titles = ["Chimmy", "24 Chicken" , "Dimsum Treats", "T-Cup-Zone", "Jus and Jerry's"];
-  
   // function next(){
   //   currentIndex = (currentIndex + 1) % images.length;
   //   moveDots(currentIndex+1);
@@ -124,12 +87,13 @@
 //     }
 //   }
   
-//   // Function to set stars based on rating
-//   function setStars(stars, rating) {
-//     for (let i = 0; i < rating; i++) {
-//         stars[i].classList.add("checked");
-//     }
-//   }
+  // Function to set stars based on rating
+  function setStars(num_review, rating) {
+    let stars = document.getElementById(num_review).querySelectorAll(".fa-star");
+    for (let i = 0; i < rating; i++) {
+        stars[i].classList.add("checked");
+    }
+  }
   
 //   function removeStars() {
 //     let stars1 = document.getElementById("first-review").querySelectorAll(".fa-star");
@@ -216,7 +180,7 @@
   }
 
   $(document).ready(function(){
-    let order = 1;  // Initialize i outside the click handler
+    let order = 0;  // Initialize i outside the click handler
 
     $('#next-button').click(function(){
         $.post(
@@ -225,9 +189,68 @@
             function(data, status){
                 if(status === 'success'){
                   $('#display-img-resto').attr('src', data.url);
-                  order = data.index;  // Update the order variable
                   $('#resto-title').text(data.title); // Update restoName
-                  moveDots(order);
+
+                  if (data.commentData[0] != null){
+                    $('.reviews-cotainer').append(`<script>
+                    <div id="first-review" class="review-popup">
+                    <div class="left-review-popup-odd">
+                        <img
+                        src="https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2247726673.jpg"
+                        alt="no image"
+                        />
+                    </div>
+                    <div class="right-review-popup-odd">
+                        <h3 class="italic bold">{{commentData.[0].username}}</h3>
+                        <p>{{commentData.[0].content}}</p>
+                        {{#each commentData.[0].ratingCount}}
+                            <span id="first-star-1" class="fa fa-star checked"></span>
+                        {{/each}}
+                    </div>
+                    </div>
+                  </script>`);
+                  }
+                  if (data.commentData[1] != null){
+                    $('.reviews-cotainer').append(`
+                    <script>
+                    <div id="second-review" class="review-popup">
+                    <div class="left-review-popup-even">
+                        <h3 class="italic bold">{{commentData.[1].username}}</h3>
+                        <p>{{commentData.[1].content}}</p>
+                        {{#each commentData.[1].ratingCount}}
+                            <span id="first-star-2" class="fa fa-star checked"></span>
+                        {{/each}}
+                    </div>
+                    <div class="right-review-popup-even">
+                        <img
+                        src="https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2247726673.jpg"
+                        alt=""
+                        />
+                    </div>
+                    </div>
+                    </script>`);
+                  }
+                  if (data.commentData[2] != null){
+                    $('.reviews-cotainer').append(`<script>
+                    <div id="third-review" class="review-popup">
+                    <div class="left-review-popup-odd">
+                        <img
+                        src="https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2247726673.jpg"
+                        alt=""
+                        />
+                    </div>
+                    <div class="right-review-popup-odd">
+                        <h3 class="italic bold">{{commentData.[2].username}}</h3>
+                        <p>{{commentData.[2].content}}</p>
+                        {{#each commentData.[2].ratingCount}}
+                            <span id="first-star-3" class="fa fa-star checked"></span>
+                        {{/each}}
+                    </div>
+                    </div>
+                    </script>`);
+                  }
+                  order = data.index;  // Update the order variable
+                  moveDots(order+1);
                 }
             }
         );
@@ -241,8 +264,11 @@
                 if(status === 'success'){
                   $('#display-img-resto').attr('src', data.url);
                   $('#resto-title').text(data.title); // Update restoName
+
+                  
+
                   order = data.index;  // Update the order variable
-                  moveDots(order);
+                  moveDots(order+1);
                 }
             }
         );

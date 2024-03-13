@@ -11,6 +11,7 @@
         <h2 class="bold">Reviews</h2>
     </div>
     <div class="reviews-cotainer">
+    {{#if commentData.[0]}}
         <div id="first-review" class="review-popup">
         <div class="left-review-popup-odd">
             <img
@@ -19,24 +20,23 @@
             />
         </div>
         <div class="right-review-popup-odd">
-            <h3 class="italic bold"></h3>
-            <p></p>
-            <span id="first-star-1" class="fa fa-star"></span>
-            <span id="second-star-1" class="fa fa-star"></span>
-            <span id="third-star-1" class="fa fa-star"></span>
-            <span id="fourth-star-1" class="fa fa-star"></span>
-            <span id="fifth-star-1" class="fa fa-star"></span>
+            <h3 class="italic bold">{{commentData.[0].username}}</h3>
+            <p>{{commentData.[0].content}}</p>
+            {{#each commentData.[0].ratingCount}}
+                <span id="first-star-1" class="fa fa-star checked"></span>
+            {{/each}}
         </div>
         </div>
+    {{/if}}
+
+    {{#if commentData.[1]}}
         <div id="second-review" class="review-popup">
         <div class="left-review-popup-even">
-            <h3 class="italic bold"></h3>
-            <p></p>
-            <span id="first-star-2" class="fa fa-star"></span>
-            <span id="second-star-2" class="fa fa-star"></span>
-            <span id="third-star-2" class="fa fa-star"></span>
-            <span id="fourth-star-2" class="fa fa-star"></span>
-            <span id="fifth-star-2" class="fa fa-star"></span>
+            <h3 class="italic bold">{{commentData.[1].username}}</h3>
+            <p>{{commentData.[1].content}}</p>
+            {{#each commentData.[1].ratingCount}}
+                <span id="first-star-2" class="fa fa-star checked"></span>
+            {{/each}}
         </div>
         <div class="right-review-popup-even">
             <img
@@ -45,6 +45,9 @@
             />
         </div>
         </div>
+    {{/if}}
+
+    {{#if commentData.[2]}}
         <div id="third-review" class="review-popup">
         <div class="left-review-popup-odd">
             <img
@@ -53,14 +56,14 @@
             />
         </div>
         <div class="right-review-popup-odd">
-            <h3 class="italic bold"></h3>
-            <p></p>
-            <span id="first-star-3" class="fa fa-star"></span>
-            <span id="second-star-3" class="fa fa-star"></span>
-            <span id="third-star-3" class="fa fa-star"></span>
-            <span id="fourth-star-3" class="fa fa-star"></span>
-            <span id="fifth-star-3" class="fa fa-star"></span>
+            <h3 class="italic bold">{{commentData.[2].username}}</h3>
+            <p>{{commentData.[2].content}}</p>
+            {{#each commentData.[2].ratingCount}}
+                <span id="first-star-3" class="fa fa-star checked"></span>
+            {{/each}}
         </div>
         </div>
+    {{/if}}
+    
     </div>
 </div>
