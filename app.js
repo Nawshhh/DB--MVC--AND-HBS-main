@@ -1,8 +1,3 @@
-// Install Command:
-// npm init
-// npm i express express-handlebars body-parser mongodb
-
-
 /*Imports */
 const express = require("express");           // Create server
 const path = require("path");                 // file path 
@@ -16,12 +11,6 @@ const PORT = 3000;
 
 const rawData = fs.readFileSync("src/models/Restaurant.json"); //JSON data from file
 const resto = JSON.parse(rawData); 
-
-const rawData2 = fs.readFileSync("src/models/user.json"); //JSON data from file
-const users = JSON.parse(rawData2); 
-
-const rawData3 = fs.readFileSync("src/models/feedback.json"); //JSON data from file
-const feedbacks = JSON.parse(rawData3); 
 
 const uri = "mongodb://127.0.0.1:27017/eggyDB";
 
@@ -39,7 +28,7 @@ app.use(express.static('public'));                                  // 'public' 
 
 /*Import Controller */
 const restaurantController = require("./src/controllers/restaurantController"); 
-restaurantController(app, resto, users); // Routes
+restaurantController(app, resto); // Routes
 
 /*Connect MongoDB */
 MongoClient.connect(uri) 
@@ -71,19 +60,14 @@ MongoClient.connect(uri)
                 console.error("Error inserting RESTO into the database:", err);
                 client.close(); // Close MongoDB connection
             });
-
-        db.collection("users") // Access the db collection
-            .insertMany(users) 
-            .then((result) => { 
-                console.log(`${result.insertedCount} new users inserted`);
-            })
-            .catch((err) => { // Handle insertion error
-                console.error("Error inserting USERS into the database:", err);
-                client.close(); // Close MongoDB connection
-            });    
-
-        
     })
     .catch((err) => { 
         console.error("Error connecting to MongoDB:", err); 
     });
+
+app.get("/view-establishment", function (req, resp) {
+  resp.render("view-establishment", {
+    layout: "index",
+    title: "View Establishments"
+  });
+});
