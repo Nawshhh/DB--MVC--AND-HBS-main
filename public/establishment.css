@@ -123,6 +123,7 @@ body {
   border-radius: 50%;
 }
 .search {
+  display: flex;
   margin-left: 680px;
   margin-top: 1%;
 }
@@ -323,12 +324,14 @@ a:active {
   font-size: 18px;
 } */
 
-#home-icon {
+#home-icon,
+#explore-icon {
   font-size: 30px;
   color: #fff;
   margin-top: 5px;
   margin-right: 20px; /* Adjust margin as needed */
 }
-#home-icon:hover {
+#home-icon:hover,
+#explore-icon:hover {
   color: #ff5300; /* Change color on hover */
 }
