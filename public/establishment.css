@@ -17,9 +17,9 @@ body {
 .whole {
   background-image: url();
   display: flex;
+  overflow: auto;
 }
 .sort-options {
-  position: fixed; /* Set the position to fixed */
   left: 0; /* Fix the position to the left */
   width: 250px; /* Set a fixed width */
   margin-top: 9%;
@@ -208,7 +208,6 @@ a:active {
   color: black;
 }
 .main-list {
-  position: fixed;
   right: 0;
   width: 1200px;
 }
