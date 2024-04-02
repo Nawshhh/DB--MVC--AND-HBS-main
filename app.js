@@ -42,7 +42,7 @@ app.use(express.static('public'));                                  // 'public' 
 
 /*Import Controller */
 const restaurantController = require("./src/controllers/restaurantController"); 
-restaurantController(app, resto, users); // Routes
+restaurantController(app, users); // Routes
 
 /*Connect MongoDB */
 MongoClient.connect(uri) 

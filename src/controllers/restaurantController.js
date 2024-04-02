@@ -1,5 +1,5 @@
 
-module.exports = function (app, resto) {
+module.exports = function (app) {
 
   const { MongoClient } = require("mongodb"); // Import MongoClient
   const uri = "mongodb://127.0.0.1:27017/eggyDB";
@@ -90,7 +90,7 @@ module.exports = function (app, resto) {
           }
 
           resp.render("main", {
-            layout: "homepage",
+            layout: "index",
             title: "My Home page",
             restoData,
             loginData: data,
@@ -319,6 +319,7 @@ module.exports = function (app, resto) {
       });
   });
 };
+
 
 function truncateString(inputString) {
   const maxLength = 152;
